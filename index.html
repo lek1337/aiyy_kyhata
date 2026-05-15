@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Последний звонок 2026 — Официальное приглашение</title>
+<title>Выпускной 2026 — Официальное приглашение</title>
 <meta property="og:title"       content="Выпускной 2026">
 <meta property="og:description" content="Официальное приглашение">
 <meta property="og:type"        content="website">
@@ -13,7 +13,9 @@
 <meta name="twitter:description" content="Официальное приглашение">
 <meta name="description"  content="Официальное приглашение на выпускной вечер 2026">
 <meta name="theme-color"  content="#C4A97A">
-<link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&family=Noto+Serif:ital,wght@0,300;0,400;0,600;1,300;1,400&display=swap" rel="stylesheet">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,400;1,600&family=Noto+Serif:ital,wght@0,300;0,400;0,600;1,300;1,400;1,600&display=swap" rel="stylesheet">
 
 <style>
 /* ═══════════════════════════════════════════════════════
@@ -58,7 +60,7 @@ html { scroll-behavior:smooth; }
 
 body {
   background-color: var(--cream);
-  font-family: 'Cormorant Garamond', Georgia, serif;
+  font-family: 'Noto Serif', Georgia, serif;
   color: var(--text-dark);
   overflow-x: hidden;
   min-height: 100vh;
@@ -161,8 +163,12 @@ body::after {
 }
 
 /* 4. ROTATION KEYFRAMES */
-@keyframes spin-cw  { to { transform: rotate(calc(45deg + 360deg)); } }
-@keyframes spin-ccw { to { transform: rotate(-360deg); } }
+/* Parallax moves via --par-y; rotation via animation — both preserved */
+.psh { transform: translateY(var(--par-y, 0px)); }
+.psh-d { transform: translateY(var(--par-y, 0px)) rotate(45deg); animation: spin-cw var(--rot-dur, 60s) linear infinite; }
+.psh-c { transform: translateY(var(--par-y, 0px)); animation: spin-ccw var(--rot-dur, 80s) linear infinite; }
+@keyframes spin-cw  { from { transform: translateY(var(--par-y, 0px)) rotate(45deg); } to { transform: translateY(var(--par-y, 0px)) rotate(405deg); } }
+@keyframes spin-ccw { from { transform: translateY(var(--par-y, 0px)) rotate(0deg); }  to { transform: translateY(var(--par-y, 0px)) rotate(-360deg); } }
 
 /* Individual shapes — size, position, blur, rotation speed */
 .pd1{ width:clamp(340px,48vw,640px); height:clamp(340px,48vw,640px);
@@ -235,17 +241,16 @@ body::after {
 
 /* 5. Editorial hint text */
 .hint-text {
-  font-family:'Noto Serif', Georgia, serif;
-  font-size:clamp(2rem,6.5vw,3rem);
-  font-weight:700;
-  font-style:italic;
-  letter-spacing:0.1em;
-  background:var(--foil); background-size:220% auto;
-  -webkit-background-clip:text; -webkit-text-fill-color:transparent; background-clip:text;
-  text-transform:uppercase;
-  margin-bottom:2.4rem;
-  filter:drop-shadow(0 2px 10px rgba(196,169,122,0.4));
-  animation:pulse-hint 3s ease-in-out infinite, foil-pan 7s ease-in-out infinite alternate;
+  font-family: 'Noto Serif', Georgia, serif;
+  font-size: clamp(1.4rem, 4vw, 2rem);
+  font-weight: 300;
+  font-style: italic;
+  letter-spacing: 0.05em;
+  background: var(--foil); background-size: 220% auto;
+  -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;
+  margin-bottom: 2.4rem;
+  filter: drop-shadow(0 2px 10px rgba(196,169,122,0.4));
+  animation: pulse-hint 3s ease-in-out infinite, foil-pan 7s ease-in-out infinite alternate;
 }
 @keyframes pulse-hint { 0%,100%{opacity:0.8;} 50%{opacity:1;} }
 
@@ -329,16 +334,16 @@ body::after {
 .seal-drip { display:none; }
 
 .envelope-year-label {
-  font-family:'Noto Serif', Georgia, serif;
-  font-size:clamp(1rem,3vw,1.4rem);
-  font-weight:600;
-  letter-spacing:0.22em;
-  text-transform:uppercase;
-  margin-top:1.6rem;
-  background:var(--foil); background-size:220% auto;
-  -webkit-background-clip:text; -webkit-text-fill-color:transparent; background-clip:text;
-  animation:foil-pan 8s ease-in-out infinite alternate;
-  filter:drop-shadow(0 1px 6px rgba(196,169,122,0.4));
+  font-family: 'Noto Serif', Georgia, serif;
+  font-size: clamp(0.78rem, 2.2vw, 0.95rem);
+  font-weight: 400;
+  letter-spacing: 0.28em;
+  text-transform: uppercase;
+  margin-top: 1.6rem;
+  background: var(--foil); background-size: 220% auto;
+  -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;
+  animation: foil-pan 8s ease-in-out infinite alternate;
+  filter: drop-shadow(0 1px 6px rgba(196,169,122,0.4));
 }
 
 /* ═══════════════════════════════════════════════════════
@@ -450,23 +455,17 @@ body::after {
   transition: opacity 0.05s linear, transform 0.05s linear;
 }
 
-/* Hero eyebrow — big Yakut-compatible header */
+/* Hero eyebrow — Yakut label above title */
 .hero-eyebrow {
   display: block;
   font-family: 'Noto Serif', Georgia, serif;
-  font-size: clamp(1.6rem, 6vw, 3.2rem);
-  letter-spacing: 0.18em;
+  font-size: clamp(0.85rem, 2.2vw, 1.05rem);
+  letter-spacing: 0.32em;
   text-transform: uppercase;
   font-weight: 300;
-  font-style: italic;
-  margin-bottom: 0.5rem;
-  background: var(--foil);
-  background-size: 220% auto;
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
-  animation: foil-pan 8s ease-in-out infinite alternate;
-  filter: drop-shadow(0 1px 0 rgba(255,245,200,0.4));
+  font-style: normal;
+  color: rgba(253,250,245,0.82);
+  margin-bottom: 0.7rem;
 }
 
 /* 3. Gold Foil hero title */
@@ -531,6 +530,7 @@ body::after {
 }
 
 /* Bell + 2026 left-side layout */
+@media (max-width: 540px) { .hero-left-accent { display: none; } }
 .hero-left-accent {
   display: flex;
   flex-direction: column;
@@ -595,13 +595,13 @@ section { padding:clamp(2rem,6vw,4.5rem) clamp(1rem,5vw,2.5rem); }
          drop-shadow(0 0 12px rgba(196,169,122,0.3));
 }
 
-/* 5. Editorial body line-height 2.1 */
 .body-text {
-  font-size:clamp(1rem,2.5vw,1.12rem);
-  line-height:2.1;
-  color:#4a3828;
-  text-align:center;
-  font-weight:400;
+  font-family: 'Noto Serif', Georgia, serif;
+  font-size: clamp(1rem, 2.5vw, 1.1rem);
+  line-height: 1.9;
+  color: #4a3828;
+  text-align: center;
+  font-weight: 300;
 }
 .body-text em { font-style:italic; color:var(--gold); }
 
@@ -711,17 +711,16 @@ section { padding:clamp(2rem,6vw,4.5rem) clamp(1rem,5vw,2.5rem); }
 
 /* 5. Editorial hint text */
 .hint-text {
-  font-family:'Noto Serif', Georgia, serif;
-  font-size:clamp(2rem,6.5vw,3rem);
-  font-weight:700;
-  font-style:italic;
-  letter-spacing:0.1em;
-  background:var(--foil); background-size:220% auto;
-  -webkit-background-clip:text; -webkit-text-fill-color:transparent; background-clip:text;
-  text-transform:uppercase;
-  margin-bottom:2.4rem;
-  filter:drop-shadow(0 2px 10px rgba(196,169,122,0.4));
-  animation:pulse-hint 3s ease-in-out infinite, foil-pan 7s ease-in-out infinite alternate;
+  font-family: 'Noto Serif', Georgia, serif;
+  font-size: clamp(1.4rem, 4vw, 2rem);
+  font-weight: 300;
+  font-style: italic;
+  letter-spacing: 0.05em;
+  background: var(--foil); background-size: 220% auto;
+  -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;
+  margin-bottom: 2.4rem;
+  filter: drop-shadow(0 2px 10px rgba(196,169,122,0.4));
+  animation: pulse-hint 3s ease-in-out infinite, foil-pan 7s ease-in-out infinite alternate;
 }
 @keyframes pulse-hint { 0%,100%{opacity:0.8;} 50%{opacity:1;} }
 
@@ -868,18 +867,17 @@ section { padding:clamp(2rem,6vw,4.5rem) clamp(1rem,5vw,2.5rem); }
   text-align:center; position:relative;
 }
 
-/* 5. Editorial eyebrow — tiny caps, wide tracking */
+/* Inner hero eyebrow */
 .hero-eyebrow {
-  display:block;
-  font-family:'Cormorant Garamond',serif;
-  font-size:clamp(1rem,2.4vw,1.28rem);
-  letter-spacing:0.62em;
-  text-transform:uppercase;
-  color:var(--gold);
-  font-weight:400;
-  margin-bottom:1.1rem;
-  opacity:1;
-  color:#7a5c38;
+  display: block;
+  font-family: 'Noto Serif', Georgia, serif;
+  font-size: clamp(0.85rem, 2.2vw, 1.05rem);
+  letter-spacing: 0.32em;
+  text-transform: uppercase;
+  font-weight: 300;
+  font-style: normal;
+  color: #7a5c38;
+  margin-bottom: 1.1rem;
 }
 
 /* 3. Gold Foil hero title — animated background-position */
@@ -905,13 +903,14 @@ section { padding:clamp(2rem,6vw,4.5rem) clamp(1rem,5vw,2.5rem); }
 }
 
 .hero-year {
-  display:block;
-  font-family:'Cormorant Garamond',serif;
-  font-size:clamp(1.2rem,2.5vw,1.76rem);
-  letter-spacing:0.6em;
-  color:var(--gold);
-  text-transform:uppercase;
-  margin-bottom:2rem;
+  display: block;
+  font-family: 'Cormorant Garamond', serif;
+  font-size: clamp(1rem, 2.2vw, 1.3rem);
+  letter-spacing: 0.5em;
+  color: var(--gold);
+  text-transform: uppercase;
+  margin-bottom: 2rem;
+  font-weight: 300;
 }
 
 /* ═══════════════════════════════════════════════════════
@@ -945,13 +944,13 @@ section { padding:clamp(2rem,6vw,4.5rem) clamp(1rem,5vw,2.5rem); }
          drop-shadow(0 0 12px rgba(196,169,122,0.3));
 }
 
-/* 5. Editorial body line-height 2.1 */
 .body-text {
-  font-size:clamp(1rem,2.5vw,1.12rem);
-  line-height:2.1;
-  color:#4a3828;
-  text-align:center;
-  font-weight:400;
+  font-family: 'Noto Serif', Georgia, serif;
+  font-size: clamp(1rem, 2.5vw, 1.1rem);
+  line-height: 1.9;
+  color: #4a3828;
+  text-align: center;
+  font-weight: 300;
 }
 .body-text em { font-style:italic; color:var(--gold); }
 
@@ -1011,9 +1010,14 @@ section { padding:clamp(2rem,6vw,4.5rem) clamp(1rem,5vw,2.5rem); }
   color:var(--gold); display:block; letter-spacing:0.05em;
 }
 .timing-label {
-  font-size:clamp(0.76rem,1.9vw,0.88rem); color:#4a3828;
-  letter-spacing:0.14em; text-transform:uppercase;
-  margin-top:0.4rem; display:block; font-weight:300;
+  font-family: 'Noto Serif', Georgia, serif;
+  font-size: clamp(0.82rem, 2vw, 0.95rem);
+  color: #4a3828;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  margin-top: 0.4rem;
+  display: block;
+  font-weight: 300;
 }
 .timing-divider {
   width:1px; height:64px;
@@ -1027,17 +1031,16 @@ section { padding:clamp(2rem,6vw,4.5rem) clamp(1rem,5vw,2.5rem); }
 #location {
   position:relative; overflow:hidden;
   padding:clamp(2rem,6vw,4.5rem) clamp(1rem,5vw,2.5rem);
-  display:flex; align-items:center; justify-content:center;
 }
 .location-card {
   position:relative; z-index:2;
   margin:0 auto;
-  max-width:480px; width:100%;
-  padding:clamp(2.4rem,6vw,3.6rem) clamp(1.8rem,5vw,3.2rem);
+  max-width:720px; width:100%;
+  padding:clamp(2rem,5vw,3.2rem) clamp(1.5rem,4vw,2.8rem);
   text-align:center;
 }
 .location-name {
-  font-family:'Noto Serif', Georgia, serif; font-size:clamp(1.5rem,5vw,2rem);
+  font-family: 'Noto Serif', Georgia, serif; font-size: clamp(1.4rem, 4.5vw, 1.9rem);
   background:var(--foil); background-size:220% auto;
   -webkit-background-clip:text; -webkit-text-fill-color:transparent; background-clip:text;
   display:block; margin-bottom:0.8rem; line-height:1.4;
@@ -1047,13 +1050,14 @@ section { padding:clamp(2rem,6vw,4.5rem) clamp(1rem,5vw,2.5rem); }
   filter:drop-shadow(0 1px 0 rgba(255,245,200,0.3));
 }
 .location-address {
-  font-size:clamp(1.5rem,5vw,2.4rem);
-  font-family:'Cormorant Garamond', serif;
-  font-weight:600;
-  color:#4a3828;
-  letter-spacing:0.14em; margin-bottom:2rem;
-  text-transform:uppercase;
-  display:block;
+  font-family: 'Noto Serif', Georgia, serif;
+  font-size: clamp(1rem, 3vw, 1.4rem);
+  font-weight: 400;
+  color: #4a3828;
+  letter-spacing: 0.12em;
+  margin-bottom: 2rem;
+  text-transform: uppercase;
+  display: block;
 }
 .map-btn {
   display:inline-flex; align-items:center; gap:0.5rem;
@@ -1093,9 +1097,12 @@ section { padding:clamp(2rem,6vw,4.5rem) clamp(1rem,5vw,2.5rem); }
 }
 .count-num.tick { transform:scale(1.12); }
 .count-label {
-  font-size:clamp(0.65rem,1.7vw,0.76rem);
-  letter-spacing:0.28em; text-transform:uppercase;
-  color:#6b4f2a; opacity:1;
+  font-family: 'Noto Serif', Georgia, serif;
+  font-size: clamp(0.82rem, 2vw, 0.92rem);
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: #6b4f2a;
+  opacity: 1;
 }
 .count-sep {
   font-size:clamp(1.5rem,5vw,2.5rem); color:var(--gold-l);
@@ -1222,6 +1229,28 @@ section { padding:clamp(2rem,6vw,4.5rem) clamp(1rem,5vw,2.5rem); }
 }
 .dot.active { background:#8C7356; width:26px; transform:scaleY(1.18); }
 
+/* Fun slider dots — same style as .dot */
+.dot2 {
+  height:8px; width:8px; border-radius:4px;
+  background:var(--gold-pale); border:1px solid var(--gold-l);
+  cursor:pointer;
+  transition:background 0.35s,width 0.4s cubic-bezier(0.34,1.56,0.64,1),transform 0.35s;
+}
+.dot2.active { background:#8C7356; width:26px; transform:scaleY(1.18); }
+
+@media (max-width: 600px) {
+  .dot, .dot2 { height:10px; width:10px; border-radius:5px; }
+  .dot.active, .dot2.active { width:28px; }
+  .dots { gap:0.9rem; margin-top:1rem; }
+  /* Bigger timing items on mobile */
+  .timing-time { font-size: clamp(1.3rem, 6vw, 1.8rem); }
+  /* Location card padding */
+  .location-card { padding: 1.5rem 1rem; }
+  /* Countdown grid tighter */
+  .countdown-grid { gap: 0.5rem; }
+  .count-block { min-width: clamp(52px, 22vw, 80px); }
+}
+
 /* ═══════════════════════════════════════════════════════
    7. FOOTER — Tunnel of light bloom
 ═══════════════════════════════════════════════════════ */
@@ -1282,9 +1311,14 @@ footer::after {
     drop-shadow(0 1px 0 rgba(255,248,210,0.5));
 }
 .footer-small {
-  font-size:0.76rem; letter-spacing:0.28em; color:#6b4f2a;
-  opacity:1; text-transform:uppercase;
-  position:relative; z-index:1;
+  font-family: 'Noto Serif', Georgia, serif;
+  font-size: 0.8rem;
+  letter-spacing: 0.2em;
+  color: #6b4f2a;
+  opacity: 1;
+  text-transform: uppercase;
+  position: relative;
+  z-index: 1;
   text-shadow: 0 1px 8px rgba(255,240,200,0.6);
 }
 
@@ -1308,6 +1342,15 @@ footer::after {
 ═══════════════════════════════════════════════════════ */
 .reveal { opacity:0; transform:translateY(34px); transition:opacity 0.95s ease,transform 0.95s ease; }
 .reveal.in-view { opacity:1; transform:translateY(0); }
+
+/* Respect user's motion preferences */
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after { animation-duration: 0.01ms !important; transition-duration: 0.2s !important; }
+  .reveal { opacity:1; transform:none; }
+  .psh { display: none; }
+  #particle-canvas { display: none; }
+  #sun-leak { display: none; }
+}
 </style>
 </head>
 <body>
@@ -1410,19 +1453,19 @@ footer::after {
         <div class="slider-container">
 
           <div class="slide active"><div class="slide-inner">
-            <img src="image4.jpg" style="width:100%; height:100%; object-fit:cover;">
+            <img loading="lazy" src="image4.jpg" style="width:100%; height:100%; object-fit:cover;">
           </div></div>
 
           <div class="slide"><div class="slide-inner">
-            <img src="image1.jpg" style="width:100%; height:100%; object-fit:cover;">
+            <img loading="lazy" src="image1.jpg" style="width:100%; height:100%; object-fit:cover;">
           </div></div>
 
           <div class="slide"><div class="slide-inner">
-            <img src="image2.jpg" style="width:100%; height:100%; object-fit:cover;">
+            <img loading="lazy" src="image2.jpg" style="width:100%; height:100%; object-fit:cover;">
           </div></div>
 
           <div class="slide"><div class="slide-inner">
-            <img src="image3.jpg" style="width:100%; height:100%; object-fit:cover;">
+            <img loading="lazy" src="image3.jpg" style="width:100%; height:100%; object-fit:cover;">
           </div></div>
 
         </div>
@@ -1544,7 +1587,7 @@ footer::after {
   <!-- LOCATION -->
   <section id="location">
     <div class="location-card glass reveal">
-      <span class="location-name">"Айыы Кыьата" 1 этээс улахан спорт саалата</span>
+      <span class="location-name">«Айыы Кыһата» 1 этээс улахан спорт саалата</span>
       <p class="location-address">203 мкр, 33</p>
       <a href="https://2gis.ru/yakutsk/geo/7037402698858785/129.756240,62.029877" target="_blank" rel="noopener" class="map-btn">
         <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
@@ -1626,8 +1669,6 @@ footer::after {
   </section>
 
 
-  <!-- ORNAMENT before fun slider -->
-  
 
   <!-- FUN PHOTO SLIDER -->
   <section class="fun-slider-section">
@@ -1636,13 +1677,13 @@ footer::after {
       <div class="glass slider-wrap">
         <div class="slider-container" id="fun-slider-container" style="overflow:hidden;">
           <div class="slide2  active"><div class="slide-inner">
-            <img src="fun1.jpg" style="width:100%; height:100%; object-fit:cover;">
+            <img loading="lazy" src="fun1.jpg" style="width:100%; height:100%; object-fit:cover;">
           </div></div>
           <div class="slide2"><div class="slide-inner">
-            <img src="fun2.jpg" style="width:100%; height:100%; object-fit:cover;">
+            <img loading="lazy" src="fun2.jpg" style="width:100%; height:100%; object-fit:cover;">
           </div></div>
           <div class="slide2"><div class="slide-inner">
-            <img src="fun3.jpg" style="width:100%; height:100%; object-fit:cover;">
+            <img loading="lazy" src="fun3.jpg" style="width:100%; height:100%; object-fit:cover;">
           </div></div>
         </div>
         <div class="dots" id="fun-dots">
@@ -1732,7 +1773,9 @@ footer::after {
   addEventListener('resize', resize, {passive:true});
   addEventListener('mousemove', e => { mx=e.clientX; }, {passive:true});
   addEventListener('scroll', () => { sy=scrollY; }, {passive:true});
-  init(); draw();
+  init();
+  // RAF starts only after envelope opens (saves battery)
+  window.__startParticles = draw;
 })();
 
 
@@ -1758,6 +1801,7 @@ function openInvitation() {
     pCanvas.classList.add('visible');
     parLayer.classList.add('visible');
     sunEl.classList.add('visible');
+    if (window.__startParticles) window.__startParticles();
   }, 1250);
 }
 trigger.addEventListener('click', openInvitation);
@@ -1788,9 +1832,7 @@ function applyParallax(sy) {
   shapes.forEach((s, i) => {
     const cfg = shapeConfig[i] || { spd:0.2, rot:0 };
     const ty  = sy * cfg.spd * -0.38;
-    s.style.transform = cfg.rot
-      ? `translateY(${ty}px) rotate(${cfg.rot}deg)`
-      : `translateY(${ty}px)`;
+    s.style.setProperty('--par-y', ty + 'px');
   });
 }
 
@@ -1848,7 +1890,7 @@ function countdown() {
   setTick(elH, String(Math.floor((diff % 86400000) / 3600000)).padStart(2,'0'));
   setTick(elM, String(Math.floor((diff % 3600000) / 60000)).padStart(2,'0'));
 }
-countdown(); setInterval(countdown, 15000);
+countdown(); setInterval(countdown, 30000);
 
 
 /* ──────────────────────────────────────────────
@@ -1907,12 +1949,42 @@ function goTo(idx) {
 
 dotEls.forEach(d => d.addEventListener('click', () => { goTo(+d.dataset.index); resetAutoplay(); }));
 
+/* ── Touch/swipe support for main slider ── */
+(function() {
+  const sliderEl = document.querySelector('#slider-section .slider-container');
+  if (!sliderEl) return;
+  let tx = 0, ty = 0, dragging = false;
+  sliderEl.addEventListener('touchstart', e => {
+    tx = e.touches[0].clientX;
+    ty = e.touches[0].clientY;
+    dragging = true;
+  }, { passive: true });
+  sliderEl.addEventListener('touchend', e => {
+    if (!dragging) return;
+    dragging = false;
+    const dx = e.changedTouches[0].clientX - tx;
+    const dy = e.changedTouches[0].clientY - ty;
+    if (Math.abs(dx) > Math.abs(dy) && Math.abs(dx) > 42) {
+      dx < 0 ? goTo(cur + 1) : goTo(cur - 1);
+      resetAutoplay();
+    }
+  }, { passive: true });
+})();
+
 /* Autoplay — advance every 4 seconds */
 let autoplayTimer = setInterval(() => goTo(cur + 1), 4000);
 function resetAutoplay() {
   clearInterval(autoplayTimer);
   autoplayTimer = setInterval(() => goTo(cur + 1), 4000);
 }
+/* Pause sliders when tab not visible */
+document.addEventListener('visibilitychange', () => {
+  if (document.hidden) {
+    clearInterval(autoplayTimer);
+  } else {
+    resetAutoplay();
+  }
+});
 
 
 
@@ -2018,6 +2090,23 @@ setTimeout(() => {
 
   let auto2 = setInterval(() => goTo2(cur2 + 1), 3500);
   function resetAuto2() { clearInterval(auto2); auto2 = setInterval(() => goTo2(cur2 + 1), 3500); }
+
+  /* Touch/swipe for fun slider */
+  let ftx = 0, fty = 0, fdrag = false;
+  container.addEventListener('touchstart', e => {
+    ftx = e.touches[0].clientX;
+    fty = e.touches[0].clientY;
+    fdrag = true;
+  }, { passive: true });
+  container.addEventListener('touchend', e => {
+    if (!fdrag) return; fdrag = false;
+    const dx = e.changedTouches[0].clientX - ftx;
+    const dy = e.changedTouches[0].clientY - fty;
+    if (Math.abs(dx) > Math.abs(dy) && Math.abs(dx) > 42) {
+      dx < 0 ? goTo2(cur2 + 1) : goTo2(cur2 - 1);
+      resetAuto2();
+    }
+  }, { passive: true });
 })();
 
 </script>
